@@ -8,11 +8,11 @@ public interface IServerStatusService {
 
 	public abstract String getOSInfo() throws IOException;
 
-	public abstract Double getTotalMemory() throws IOException;
+	public abstract Integer getTotalMemory() throws IOException;
 
-	public abstract Double getFreeMemory() throws IOException;
+	public abstract Integer getFreeMemory() throws IOException;
 
-	public abstract Double getUsedMemory() throws IOException;
+	public abstract Integer getUsedMemory() throws IOException;
 
 	public abstract Integer getTotalDisk() throws IOException;
 

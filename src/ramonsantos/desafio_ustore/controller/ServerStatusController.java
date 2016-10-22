@@ -18,17 +18,9 @@ public class ServerStatusController {
 
 	public ServerStatusController() {
 
-		try {
-
-			sss = new ServerStatusService();
-			pcs = new PieChartService();
-			pcs.init();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
+		sss = new ServerStatusService();
+		pcs = new PieChartService();
+		pcs.init();
 
 	}
 

@@ -48,16 +48,16 @@ public class PieChartService implements Serializable {
 
 	}
 
-	private void createPieModel1() {
+	private void createPieModel1() throws IOException {
 		pieModel1 = new PieChartModel();
 
-		pieModel1.set("Brand 1", 100.0);
-		pieModel1.set("Brand 2", 50.0);
-		pieModel1.set("Brand 3", 10.0);
-		pieModel1.set("Brand 4", 75.0);
+		pieModel1.set("used", sss.getUsedMemory());
+		pieModel1.set("free", sss.getFreeMemory());
 
 		pieModel1.setTitle("Simple Pie");
 		pieModel1.setLegendPosition("w");
+		pieModel1.setShowDataLabels(true);
+		;
 	}
 
 	private void createDiskChart() throws IOException {

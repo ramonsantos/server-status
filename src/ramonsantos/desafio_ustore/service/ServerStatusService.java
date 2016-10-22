@@ -1,16 +1,9 @@
 package ramonsantos.desafio_ustore.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class ServerStatusService implements IServerStatusService {
-
-	public ServerStatusService() throws IOException {
-
-		// this.readDisk();
-
-	}
 
 	public String getUptime() throws IOException {
 
@@ -39,21 +32,28 @@ public class ServerStatusService implements IServerStatusService {
 	}
 
 	@Override
-	public Double getTotalMemory() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getTotalMemory() throws IOException {
+
+		String array[] = getMemoryInfo();
+
+		return Integer.parseInt(array[0]);
+
 	}
 
 	@Override
-	public Double getFreeMemory() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getFreeMemory() throws IOException {
+
+		String array[] = getMemoryInfo();
+
+		return Integer.parseInt(array[1]);
+
 	}
 
 	@Override
-	public Double getUsedMemory() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getUsedMemory() throws IOException {
+
+		return this.getTotalMemory() - this.getFreeMemory();
+
 	}
 
 	@Override
@@ -114,6 +114,13 @@ public class ServerStatusService implements IServerStatusService {
 		}
 
 		return disk;
+
+	}
+
+	private String[] getMemoryInfo() throws IOException {
+
+		// TODO - mudar para caminho relativo
+		return getOutOSCommand("bash /home/ramonsantos/scripts/" + "freeMemory.sh").replaceAll("\n", "").split(" ");
 
 	}
 
