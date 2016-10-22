@@ -14,7 +14,12 @@ public class ServerStatusController {
 
 	public ServerStatusController() {
 
-		sss = new ServerStatusService();
+		try {
+			sss = new ServerStatusService();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -30,6 +35,19 @@ public class ServerStatusController {
 			e.printStackTrace();
 			return "Erro!";
 
+		}
+
+	}
+
+	public Integer getFreeDisk() {
+
+		try {
+			return sss.getFreeDisk();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+			return -1;
 		}
 
 	}

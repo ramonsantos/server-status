@@ -9,7 +9,12 @@
 </h:head>
 <h:body>
     
-    Uptime: ${serverStatusController.getUptime()} 
+    Uptime: ${serverStatusController.getUptime()}
+    
+    Disk Total: 
+    Disk Used: 
+    Disk Free: ${serverStatusController.getFreeDisk()}
+     
     
          <p:chart type="pie" model="#{pieChartService.pieModel1}"
 		style="width:400px;height:300px" />

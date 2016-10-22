@@ -14,10 +14,10 @@ public interface IServerStatusService {
 
 	public abstract Double getUsedMemory() throws IOException;
 
-	public abstract Double getTotalDisk() throws IOException;
+	public abstract Integer getTotalDisk() throws IOException;
 
-	public abstract Double getFreeDisk() throws IOException;
+	public abstract Integer getFreeDisk() throws IOException;
 
-	public abstract Double getUsedDisk() throws IOException;
+	public abstract Integer getUsedDisk() throws IOException;
 
 }
