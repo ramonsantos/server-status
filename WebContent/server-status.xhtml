@@ -15,11 +15,12 @@
     Disk Used: ${serverStatusController.getUsedDisk()}
     Disk Free: ${serverStatusController.getFreeDisk()}
      
-    
-         <p:chart type="pie" model="#{pieChartService.pieModel1}"
+    <p:chart type="pie"
+		model="#{serverStatusController.memoryChartModel}"
 		style="width:400px;height:300px" />
 
 	<p:chart type="pie" model="#{serverStatusController.diskChartModel}"
 		style="width:400px;height:300px" />
+
 </h:body>
 </html>

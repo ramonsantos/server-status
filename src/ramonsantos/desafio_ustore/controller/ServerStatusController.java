@@ -94,4 +94,10 @@ public class ServerStatusController {
 
 	}
 
+	public PieChartModel getMemoryChartModel() {
+
+		return pcs.getMemoryChartModel();
+
+	}
+
 }

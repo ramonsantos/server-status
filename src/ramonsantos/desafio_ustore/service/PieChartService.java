@@ -4,18 +4,16 @@ import javax.annotation.PostConstruct;
 
 import java.io.IOException;
 import java.io.Serializable;
-import javax.faces.bean.ManagedBean;
+
 import org.primefaces.model.chart.PieChartModel;
 
-// TODO - Atribuir ao Controller
-@ManagedBean
 public class PieChartService implements Serializable {
 
 	private static final long serialVersionUID = 3381484944292509287L;
 
-	private PieChartModel pieModel1;
+	private PieChartModel memoryChart;
 	private PieChartModel diskChart;
-	ServerStatusService sss;
+	private ServerStatusService sss;
 
 	@PostConstruct
 	public void init() {
@@ -33,31 +31,36 @@ public class PieChartService implements Serializable {
 
 	}
 
-	public PieChartModel getPieModel1() {
-		return pieModel1;
+	public PieChartModel getMemoryChartModel() {
+
+		return memoryChart;
+
 	}
 
 	public PieChartModel getDiskChartModel() {
+
 		return diskChart;
+
 	}
 
 	private void createPieModels() throws IOException {
 
-		createPieModel1();
+		createMemoryChart();
 		createDiskChart();
 
 	}
 
-	private void createPieModel1() throws IOException {
-		pieModel1 = new PieChartModel();
+	private void createMemoryChart() throws IOException {
 
-		pieModel1.set("used", sss.getUsedMemory());
-		pieModel1.set("free", sss.getFreeMemory());
+		memoryChart = new PieChartModel();
 
-		pieModel1.setTitle("Simple Pie");
-		pieModel1.setLegendPosition("w");
-		pieModel1.setShowDataLabels(true);
-		;
+		memoryChart.set("Memória Livre", sss.getFreeMemory());
+		memoryChart.set("Memória Usada", sss.getUsedMemory());
+
+		memoryChart.setTitle("Memória RAM");
+		memoryChart.setLegendPosition("w");
+		memoryChart.setShowDataLabels(true);
+
 	}
 
 	private void createDiskChart() throws IOException {
@@ -69,7 +72,6 @@ public class PieChartService implements Serializable {
 
 		diskChart.setTitle("Disco Rígido");
 		diskChart.setLegendPosition("w");
-		diskChart.setFill(true);
 		diskChart.setShowDataLabels(true);
 
 	}
