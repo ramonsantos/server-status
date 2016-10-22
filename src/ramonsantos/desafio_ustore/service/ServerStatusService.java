@@ -1,16 +1,14 @@
 package ramonsantos.desafio_ustore.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class ServerStatusService implements IServerStatusService {
 
-	private Integer diskFree = 0;
-	private Integer diskUsed = 0;
-
 	public ServerStatusService() throws IOException {
 
-		this.readDisk();
+		// this.readDisk();
 
 	}
 
@@ -61,21 +59,21 @@ public class ServerStatusService implements IServerStatusService {
 	@Override
 	public Integer getTotalDisk() throws IOException {
 
-		return this.diskFree + this.diskUsed;
+		return this.getFreeDisk() + this.getUsedDisk();
 
 	}
 
 	@Override
 	public Integer getFreeDisk() throws IOException {
 
-		return this.diskFree;
+		return getSpaceDisk("freeDisk.sh");
 
 	}
 
 	@Override
 	public Integer getUsedDisk() throws IOException {
 
-		return this.diskUsed;
+		return getSpaceDisk("usedDisk.sh");
 
 	}
 
@@ -90,38 +88,32 @@ public class ServerStatusService implements IServerStatusService {
 
 		while ((c = in.read()) != -1) {
 
-			if ((char) c == ' ') {
-
-				if (!(saida.charAt(saida.length() - 1) == ' ')) {
-
-					saida.append((char) c);
-				}
-
-			} else {
-
-				saida.append((char) c);
-			}
+			saida.append((char) c);
 
 		}
 
 		in.close();
 
-		return saida.toString().replaceAll("\t", "");
+		return saida.toString();
 
 	}
 
-	private void readDisk() throws IOException {
+	private Integer getSpaceDisk(String script) throws IOException {
 
-		String[] lines = this.getOutOSCommand("df").split("\n");
+		Integer disk = 0;
 
-		for (int i = 1; i < lines.length; i++) {
+		// TODO - mudar para caminho relativo
+		String out = getOutOSCommand("bash /home/ramonsantos/scripts/" + script);
 
-			String[] arrayS = lines[i].split(" ");
+		String array[] = out.split("\n");
 
-			this.diskUsed = this.diskUsed + Integer.parseInt(arrayS[2]);
-			this.diskFree = this.diskFree + Integer.parseInt(arrayS[3]);
+		for (int i = 0; i < array.length; i++) {
+
+			disk = disk + Integer.parseInt(array[i]);
 
 		}
+
+		return disk;
 
 	}
 

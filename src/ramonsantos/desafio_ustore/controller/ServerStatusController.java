@@ -15,10 +15,13 @@ public class ServerStatusController {
 	public ServerStatusController() {
 
 		try {
+
 			sss = new ServerStatusService();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+
 		}
 
 	}
@@ -42,12 +45,47 @@ public class ServerStatusController {
 	public Integer getFreeDisk() {
 
 		try {
+
 			return sss.getFreeDisk();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 
 			return -1;
+
+		}
+
+	}
+
+	public Integer getUsedDisk() {
+
+		try {
+
+			return sss.getUsedDisk();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+			return -1;
+
+		}
+
+	}
+
+	public Integer getTotalDisk() {
+
+		try {
+
+			return sss.getTotalDisk();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+			return -1;
+
 		}
 
 	}
