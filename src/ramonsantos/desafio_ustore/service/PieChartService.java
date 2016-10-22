@@ -1,10 +1,11 @@
 package ramonsantos.desafio_ustore.service;
 
 import javax.annotation.PostConstruct;
+
+import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.chart.PieChartModel;
-
 
 // TODO - Atribuir ao Controller
 @ManagedBean
@@ -13,24 +14,38 @@ public class PieChartService implements Serializable {
 	private static final long serialVersionUID = 3381484944292509287L;
 
 	private PieChartModel pieModel1;
-	private PieChartModel pieModel2;
+	private PieChartModel diskChart;
+	ServerStatusService sss;
 
 	@PostConstruct
 	public void init() {
-		createPieModels();
+
+		try {
+
+			sss = new ServerStatusService();
+			createPieModels();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
 	}
 
 	public PieChartModel getPieModel1() {
 		return pieModel1;
 	}
 
-	public PieChartModel getPieModel2() {
-		return pieModel2;
+	public PieChartModel getDiskChartModel() {
+		return diskChart;
 	}
 
-	private void createPieModels() {
+	private void createPieModels() throws IOException {
+
 		createPieModel1();
-		createPieModel2();
+		createDiskChart();
+
 	}
 
 	private void createPieModel1() {
@@ -45,19 +60,18 @@ public class PieChartService implements Serializable {
 		pieModel1.setLegendPosition("w");
 	}
 
-	private void createPieModel2() {
-		pieModel2 = new PieChartModel();
+	private void createDiskChart() throws IOException {
 
-		pieModel2.set("Brand 1", 540);
-		pieModel2.set("Brand 2", 325);
-		pieModel2.set("Brand 3", 702);
-		pieModel2.set("Brand 4", 421);
+		diskChart = new PieChartModel();
 
-		pieModel2.setTitle("Custom Pie");
-		pieModel2.setLegendPosition("e");
-		pieModel2.setFill(false);
-		pieModel2.setShowDataLabels(true);
-		pieModel2.setDiameter(150);
+		diskChart.set("Espaço Livre", sss.getFreeDisk());
+		diskChart.set("Espaço Usado", sss.getUsedDisk());
+
+		diskChart.setTitle("Disco Rígido");
+		diskChart.setLegendPosition("w");
+		diskChart.setFill(true);
+		diskChart.setShowDataLabels(true);
+
 	}
 
 }

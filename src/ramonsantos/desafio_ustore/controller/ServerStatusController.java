@@ -4,19 +4,25 @@ import java.io.IOException;
 
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.model.chart.PieChartModel;
+
 import ramonsantos.desafio_ustore.service.IServerStatusService;
+import ramonsantos.desafio_ustore.service.PieChartService;
 import ramonsantos.desafio_ustore.service.ServerStatusService;
 
 @ManagedBean(name = "serverStatusController")
 public class ServerStatusController {
 
 	private IServerStatusService sss;
+	private PieChartService pcs;
 
 	public ServerStatusController() {
 
 		try {
 
 			sss = new ServerStatusService();
+			pcs = new PieChartService();
+			pcs.init();
 
 		} catch (IOException e) {
 
@@ -87,6 +93,12 @@ public class ServerStatusController {
 			return -1;
 
 		}
+
+	}
+
+	public PieChartModel getDiskChartModel() {
+
+		return pcs.getDiskChartModel();
 
 	}
 
