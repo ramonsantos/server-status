@@ -27,8 +27,13 @@ public class ServerStatusService implements IServerStatusService {
 
 	@Override
 	public String getOSInfo() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+
+		// TODO - mudar para caminho relativo
+		String osInfo = getOutOSCommand("bash /home/ramonsantos/scripts/" + "osInfo.sh");
+		osInfo = osInfo.replaceAll("PRETTY_NAME=", "").replaceAll("\"", "");
+
+		return osInfo;
+
 	}
 
 	@Override

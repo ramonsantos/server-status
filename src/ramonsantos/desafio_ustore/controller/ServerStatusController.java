@@ -32,9 +32,25 @@ public class ServerStatusController {
 
 		} catch (IOException e) {
 
-			// TODO - Mudar para outra msg "nao disponivel"
 			e.printStackTrace();
-			return "Erro!";
+
+			return "Não disponível!";
+
+		}
+
+	}
+
+	public String getInfoOS() {
+
+		try {
+
+			return sss.getOSInfo();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+			return "Não disponível!";
 
 		}
 

@@ -9,6 +9,8 @@
 </h:head>
 <h:body>
     
+    ${serverStatusController.getInfoOS()}
+    
     Uptime: ${serverStatusController.getUptime()}
     
     Disk Total: ${serverStatusController.getTotalDisk()}
