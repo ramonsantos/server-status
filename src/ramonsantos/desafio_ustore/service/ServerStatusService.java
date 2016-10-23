@@ -2,26 +2,26 @@ package ramonsantos.desafio_ustore.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalTime;
 
 public class ServerStatusService implements IServerStatusService {
 
 	public String getUptime() throws IOException {
 
-		StringBuilder saida = new StringBuilder();
+		int SEG_IN_DAY = 86400;
 
-		Process child = Runtime.getRuntime().exec("cat /proc/uptime");
+		String uptimeOut = this.getOutOSCommand("cat /proc/uptime");
+		uptimeOut = uptimeOut.substring(0, uptimeOut.indexOf('.'));
 
-		InputStream in = child.getInputStream();
-		int c;
+		int timeIn = Integer.parseInt(uptimeOut);
 
-		while ((c = in.read()) != -1 && ((char) c != ' ')) {
-			saida.append((char) c);
-		}
-		in.close();
+		int segOfDay = timeIn % SEG_IN_DAY;
+		int days = timeIn / SEG_IN_DAY;
 
-		// TODO - Formatar para uma saída DD:HH:MM:SS
+		LocalTime timeOfDay = LocalTime.ofSecondOfDay(segOfDay);
+		String time = timeOfDay.toString();
 
-		return saida.toString();
+		return (days + ":" + time);
 
 	}
 
@@ -86,7 +86,7 @@ public class ServerStatusService implements IServerStatusService {
 
 	private String getOutOSCommand(String command) throws IOException {
 
-		StringBuilder saida = new StringBuilder();
+		StringBuilder commandOut = new StringBuilder();
 
 		Process child = Runtime.getRuntime().exec(command);
 
@@ -95,13 +95,13 @@ public class ServerStatusService implements IServerStatusService {
 
 		while ((c = in.read()) != -1) {
 
-			saida.append((char) c);
+			commandOut.append((char) c);
 
 		}
 
 		in.close();
 
-		return saida.toString();
+		return commandOut.toString();
 
 	}
 
