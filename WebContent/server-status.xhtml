@@ -8,17 +8,16 @@
 	<title>Hello World - Input Form</title>
 </h:head>
 <h:body>
-    
-    ${serverStatusController.getInfoOS()}
-    
-    Uptime: ${serverStatusController.getUptime()}
-    
-    Disk Total: ${serverStatusController.getTotalDisk()}
-    Disk Used: ${serverStatusController.getUsedDisk()}
-    Disk Free: ${serverStatusController.getFreeDisk()}
-     
-    <p:chart type="pie"
-		model="#{serverStatusController.memoryChartModel}"
+
+	<h1>Status do Servidor</h1>
+
+	<h2>${serverStatusController.getOSInfo()}</h2>
+	
+	<h2>${serverStatusController.getKernelInfo()}</h2>
+
+	<h2>Uptime: ${serverStatusController.getUptime()}</h2>
+
+	<p:chart type="pie" model="#{serverStatusController.memoryChartModel}"
 		style="width:400px;height:300px" />
 
 	<p:chart type="pie" model="#{serverStatusController.diskChartModel}"

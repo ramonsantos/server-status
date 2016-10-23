@@ -28,12 +28,16 @@ public class ServerStatusService implements IServerStatusService {
 	@Override
 	public String getOSInfo() throws IOException {
 
-		// TODO - Separar kernel de distro
-
 		String osInfo = getOutOSCommand("bash " + this.getPathScript("osInfo.sh"));
 		osInfo = osInfo.replaceAll("PRETTY_NAME=", "").replaceAll("\"", "");
 
 		return osInfo;
+
+	}
+
+	public String getKernelInfo() throws IOException {
+
+		return this.getOutOSCommand("uname -o -m -v -r").trim();
 
 	}
 

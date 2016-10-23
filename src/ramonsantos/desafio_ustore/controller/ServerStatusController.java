@@ -40,11 +40,27 @@ public class ServerStatusController {
 
 	}
 
-	public String getInfoOS() {
+	public String getOSInfo() {
 
 		try {
 
 			return sss.getOSInfo();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+			return "Não disponível!";
+
+		}
+
+	}
+
+	public String getKernelInfo() {
+
+		try {
+
+			return sss.getKernelInfo();
 
 		} catch (IOException e) {
 
