@@ -72,54 +72,6 @@ public class ServerStatusController {
 
 	}
 
-	public Integer getFreeDisk() {
-
-		try {
-
-			return sss.getFreeDisk();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-			return -1;
-
-		}
-
-	}
-
-	public Integer getUsedDisk() {
-
-		try {
-
-			return sss.getUsedDisk();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-			return -1;
-
-		}
-
-	}
-
-	public Integer getTotalDisk() {
-
-		try {
-
-			return sss.getTotalDisk();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-			return -1;
-
-		}
-
-	}
-
 	public PieChartModel getDiskChartModel() {
 
 		return pcs.getDiskChartModel();

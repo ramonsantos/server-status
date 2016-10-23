@@ -58,7 +58,10 @@ public class PieChartService implements Serializable {
 		memoryChart.set("Usado", sss.getUsedMemory());
 		memoryChart.set("Buff/Cache", sss.getBuffCaheMemory());
 
-		memoryChart.setTitle("Memória RAM");
+		double gb = sss.getTotalMemory() / 1048576.0;
+		String totalMemory = String.format("%.1f", gb);
+
+		memoryChart.setTitle("Memória RAM-- Total Disponível: " + totalMemory + " GB");
 		memoryChart.setLegendPosition("w");
 		memoryChart.setShowDataLabels(true);
 
@@ -71,7 +74,10 @@ public class PieChartService implements Serializable {
 		diskChart.set("Espaço Livre", sss.getFreeDisk());
 		diskChart.set("Espaço Usado", sss.getUsedDisk());
 
-		diskChart.setTitle("Disco Rígido");
+		double gb = sss.getTotalDisk() / 1048576.0;
+		String totalDisk = String.format("%.2f", gb);
+
+		diskChart.setTitle("Disco Rígido -- Total Disponível: " + totalDisk + " GB");
 		diskChart.setLegendPosition("w");
 		diskChart.setShowDataLabels(true);
 
