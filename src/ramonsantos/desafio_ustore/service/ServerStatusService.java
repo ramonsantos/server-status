@@ -28,8 +28,9 @@ public class ServerStatusService implements IServerStatusService {
 	@Override
 	public String getOSInfo() throws IOException {
 
-		// TODO - mudar para caminho relativo
-		String osInfo = getOutOSCommand("bash /home/ramonsantos/scripts/" + "osInfo.sh");
+		// TODO - Separar kernel de distro
+
+		String osInfo = getOutOSCommand("bash " + this.getPathScript("osInfo.sh"));
 		osInfo = osInfo.replaceAll("PRETTY_NAME=", "").replaceAll("\"", "");
 
 		return osInfo;
@@ -73,14 +74,14 @@ public class ServerStatusService implements IServerStatusService {
 	@Override
 	public Integer getFreeDisk() throws IOException {
 
-		return getSpaceDisk("freeDisk.sh");
+		return getSpaceDisk(this.getPathScript("freeDisk.sh"));
 
 	}
 
 	@Override
 	public Integer getUsedDisk() throws IOException {
 
-		return getSpaceDisk("usedDisk.sh");
+		return getSpaceDisk(this.getPathScript("usedDisk.sh"));
 
 	}
 
@@ -109,8 +110,7 @@ public class ServerStatusService implements IServerStatusService {
 
 		Integer disk = 0;
 
-		// TODO - mudar para caminho relativo
-		String out = getOutOSCommand("bash /home/ramonsantos/scripts/" + script);
+		String out = getOutOSCommand("bash " + script);
 
 		String array[] = out.split("\n");
 
@@ -126,8 +126,13 @@ public class ServerStatusService implements IServerStatusService {
 
 	private String[] getMemoryInfo() throws IOException {
 
-		// TODO - mudar para caminho relativo
-		return getOutOSCommand("bash /home/ramonsantos/scripts/" + "freeMemory.sh").replaceAll("\n", "").split(" ");
+		return getOutOSCommand("bash " + this.getPathScript("freeMemory.sh")).replaceAll("\n", "").split(" ");
+
+	}
+
+	private String getPathScript(String nameScript) {
+
+		return getClass().getResource("/" + nameScript).getPath();
 
 	}
 
