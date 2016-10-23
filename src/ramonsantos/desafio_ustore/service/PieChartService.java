@@ -54,8 +54,9 @@ public class PieChartService implements Serializable {
 
 		memoryChart = new PieChartModel();
 
-		memoryChart.set("Memória Livre", sss.getFreeMemory());
-		memoryChart.set("Memória Usada", sss.getUsedMemory());
+		memoryChart.set("Livre", sss.getFreeMemory());
+		memoryChart.set("Usado", sss.getUsedMemory());
+		memoryChart.set("Buff/Cache", sss.getBuffCaheMemory());
 
 		memoryChart.setTitle("Memória RAM");
 		memoryChart.setLegendPosition("w");

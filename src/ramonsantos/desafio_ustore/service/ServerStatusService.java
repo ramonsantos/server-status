@@ -34,25 +34,27 @@ public class ServerStatusService implements IServerStatusService {
 	@Override
 	public Integer getTotalMemory() throws IOException {
 
-		String array[] = getMemoryInfo();
-
-		return Integer.parseInt(array[0]);
+		return Integer.parseInt(getMemoryInfo()[0]);
 
 	}
 
 	@Override
 	public Integer getFreeMemory() throws IOException {
 
-		String array[] = getMemoryInfo();
-
-		return Integer.parseInt(array[1]);
+		return Integer.parseInt(getMemoryInfo()[2]);
 
 	}
 
 	@Override
 	public Integer getUsedMemory() throws IOException {
 
-		return this.getTotalMemory() - this.getFreeMemory();
+		return Integer.parseInt(getMemoryInfo()[1]);
+
+	}
+
+	public Integer getBuffCaheMemory() throws IOException {
+
+		return Integer.parseInt(getMemoryInfo()[3]);
 
 	}
 
