@@ -64,6 +64,7 @@ public class PieChartService implements Serializable {
 		memoryChart.setTitle("Memória RAM-- Total Disponível: " + totalMemory + " GB");
 		memoryChart.setLegendPosition("w");
 		memoryChart.setShowDataLabels(true);
+		memoryChart.setSeriesColors("32CD32, 00BFFF, F08080");
 
 	}
 
@@ -80,6 +81,7 @@ public class PieChartService implements Serializable {
 		diskChart.setTitle("Disco Rígido -- Total Disponível: " + totalDisk + " GB");
 		diskChart.setLegendPosition("w");
 		diskChart.setShowDataLabels(true);
+		diskChart.setSeriesColors("00BFFF, F08080");
 
 	}
 
