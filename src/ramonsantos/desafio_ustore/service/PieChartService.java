@@ -61,7 +61,7 @@ public class PieChartService implements Serializable {
 		double gb = sss.getTotalMemory() / 1048576.0;
 		String totalMemory = String.format("%.1f", gb);
 
-		memoryChart.setTitle("Memória RAM-- Total Disponível: " + totalMemory + " GB");
+		memoryChart.setTitle("Memória RAM -- Total Disponível: " + totalMemory + " GB");
 		memoryChart.setLegendPosition("w");
 		memoryChart.setShowDataLabels(true);
 		memoryChart.setSeriesColors("32CD32, 00BFFF, F08080");
