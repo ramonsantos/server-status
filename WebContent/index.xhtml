@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Status do Servidor - Desafio Ustore</title>
+	<title>Status do Servidor</title>
 	<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css" />
 </h:head>
 
@@ -36,8 +36,11 @@
 			<div class="col-md-6" style="padding-right: 15px;">
 				<div class="jumbotron">
 					<div class="container">
-						<p:chart type="pie"
-							model="#{serverStatusController.memoryChartModel}" />
+						<h:form>
+							<p:poll interval="1" update="memory-chart" />
+							<p:chart id="memory-chart" type="pie"
+								model="#{serverStatusController.memoryChartModel}" />
+						</h:form>
 					</div>
 				</div>
 			</div>
@@ -45,8 +48,11 @@
 			<div class="col-md-6">
 				<div class="jumbotron">
 					<div class="container">
-						<p:chart type="pie"
-							model="#{serverStatusController.diskChartModel}" />
+						<h:form>
+							<p:poll interval="1" update="disk-chart" />
+							<p:chart id="disk-chart" type="pie"
+								model="#{serverStatusController.diskChartModel}" />
+						</h:form>
 					</div>
 				</div>
 			</div>
