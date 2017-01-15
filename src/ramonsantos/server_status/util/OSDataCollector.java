@@ -1,4 +1,4 @@
-package ramonsantos.desafio_ustore.util;
+package ramonsantos.server_status.util;
 
 import java.io.IOException;
 import java.io.InputStream;

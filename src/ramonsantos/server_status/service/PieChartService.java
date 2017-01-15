@@ -1,4 +1,4 @@
-package ramonsantos.desafio_ustore.service;
+package ramonsantos.server_status.service;
 
 import javax.annotation.PostConstruct;
 

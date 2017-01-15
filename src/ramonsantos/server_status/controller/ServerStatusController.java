@@ -1,4 +1,4 @@
-package ramonsantos.desafio_ustore.controller;
+package ramonsantos.server_status.controller;
 
 import java.io.IOException;
 
@@ -6,9 +6,9 @@ import javax.faces.bean.ManagedBean;
 
 import org.primefaces.model.chart.PieChartModel;
 
-import ramonsantos.desafio_ustore.service.IServerStatusService;
-import ramonsantos.desafio_ustore.service.PieChartService;
-import ramonsantos.desafio_ustore.service.ServerStatusService;
+import ramonsantos.server_status.service.IServerStatusService;
+import ramonsantos.server_status.service.PieChartService;
+import ramonsantos.server_status.service.ServerStatusService;
 
 @ManagedBean(name = "serverStatusController")
 public class ServerStatusController {

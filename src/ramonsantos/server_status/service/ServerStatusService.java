@@ -1,8 +1,8 @@
-package ramonsantos.desafio_ustore.service;
+package ramonsantos.server_status.service;
 
 import java.io.IOException;
 
-import ramonsantos.desafio_ustore.util.OSDataCollector;
+import ramonsantos.server_status.util.OSDataCollector;
 
 public class ServerStatusService implements IServerStatusService {
 
